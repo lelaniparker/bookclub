@@ -5,5 +5,35 @@ class BooksController < ApplicationController
 
     def show
         @book = Book.find(params[:id])
+        @can_add = !BookListItem.contains?(current_user, @book) if user_signed_in?
     end
+
+    def create
+        author = Author.create_author(params[:book][:first_name], params[:book][:last_name])
+        book = Book.create_book(params[:book][:title], author, params[:book][:genre])
+        BookListItem.create_book_list_item(current_user, book)
+        rescue
+          flash[:alert] = "Oops! There was a problem adding that book."
+        ensure
+          redirect_to book_list_items_path
+    end
+
+    def add
+        book = Book.find(params[:id])
+
+        if BookListItem.contains?(current_user, book)
+            flash[:alert] = "Sorry, that book is already in your list"
+            redirect_to book_path(book.id)
+        else
+            current_user.books.push(book)
+            if current_user.save
+                flash[:alert] = "#{book.title} has now been added to your book list"
+            redirect_to book_list_items_path
+            else
+            flash[:alert] = "Oops! There was a problem adding that book"
+            end
+        end
+    end
+     
+
 end

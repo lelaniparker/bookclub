@@ -2,7 +2,7 @@
 
 <% @books&.each do |book|%>
     <p class="book-item">
-    <%= link_to @book.title, book_path(book)%>
-    <%= link_to @book.author.name, author_path(book.author) %>
+    <%= link_to book.title, book_path(book)%>
+    <%= link_to book.author.name, author_path(book.author) %>
     </p>
 <%end%>
