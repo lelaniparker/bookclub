@@ -8,6 +8,10 @@ class BooksController < ApplicationController
         @can_add = !BookListItem.contains?(current_user, @book) if user_signed_in?
     end
 
+    def new
+        @book = Book.new
+    end
+
     def create
         author = Author.create_author(params[:book][:first_name], params[:book][:last_name])
         book = Book.create_book(params[:book][:title], author, params[:book][:genre])

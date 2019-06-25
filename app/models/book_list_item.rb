@@ -12,5 +12,10 @@ class BookListItem < ApplicationRecord
       current_user.save
     end
   end
+
+  def self.book_list_item_id(current_user,book)
+    return BookListItem.where("book_id = ? AND user_id = ?", book,current_user.id).first.id
+  end
+ 
  
 end

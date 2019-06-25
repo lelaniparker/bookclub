@@ -1,0 +1,11 @@
+<h1>Edit <%= @book_list_item.book.title %></h1>
+
+
+<%= form_with model: @book_list_item do |form| %>
+    <p>
+        <%= form.check_box :for_trade %>
+        <%= form.label "Available to trade"%>
+    </p>
+
+
+<%end%>
