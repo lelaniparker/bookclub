@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   has_many :book_list_items
   has_many :reviews
 
+  validates :genre, inclusion: { in: ["Romance", "SciFi", "Drama"]}
+
   def self.ordered_by_author_and_title
     books = []
     Author.all.order(:last_name).each do |author|
