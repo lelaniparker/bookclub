@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   patch "/mylist/:id", to: "book_list_items#update", as: "book_list_item"
   get "/reviews/new", to: "reviews#new", as: "new_review"
   post "reviews", to: "reviews#create"
+  post "follow/:user_id", to: "relationships#create", as: 'follow_user'
 end

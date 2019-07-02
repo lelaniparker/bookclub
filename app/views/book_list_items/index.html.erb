@@ -8,3 +8,12 @@
     <%= link_to book.author.name, author_path(book.author) %>
     </p>
 <%end%>
+
+<h2 class="list-item">You are following <%= current_user.following.length %> users</h2>
+<ul>
+    <% current_user.following.each do |user| %>
+    <li class="list-item">
+        <%= user.name %>
+    </li>
+    <% end %>
+</ul>

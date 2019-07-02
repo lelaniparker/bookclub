@@ -29,3 +29,18 @@
     <%end%>
   <%end%>
 </div>
+
+<div class="list-item">
+  <h1><%= pluralize @book.users.length, "user/s" %> have this book listed</h1>
+    <ul class="list-item">
+      <% @book.users.each do |user| %>
+      <li class="list-item"><%= user.name %></li>
+      <% if current_user != nil && user != current_user %>
+        <%= form_with url: follow_user_path(user_id: user.id), local: true do |form| %>
+        <%= form.submit "follow" %>
+        <%end%>
+        <%end%>
+      </li>
+      <%end%>
+    </ul>
+</div>
