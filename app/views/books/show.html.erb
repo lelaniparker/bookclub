@@ -1,6 +1,13 @@
 <h1><%= @book.title %></h1>
+
+<p class="book-item">
+  <%= image_tag @book.cover, width: 120 %>
+</p>
+
 <p><%= @book.author.name %></p>
 <p><%= @book.genre %></p>
+
+
 
 <% if user_signed_in? %>
    <%if  @can_add %>

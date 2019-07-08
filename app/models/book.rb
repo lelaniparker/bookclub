@@ -3,7 +3,9 @@ class Book < ApplicationRecord
   has_many :book_list_items
   has_many :reviews
   has_many :users, through: :book_list_items 
+  has_one_attached :cover
 
+  validates :title, presence: true
   validates :genre, inclusion: { in: ["Romance", "SciFi", "Drama"]}
 
   def self.ordered_by_author_and_title
