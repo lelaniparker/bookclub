@@ -25,5 +25,11 @@
   <%= form.file_field :cover %>
 </p>
 
+<p>
+  <%= form.label :price %>
+  <%= form.number_field :price, step: :any %>
+</p>
+
   <%= form.submit "Add book", class: "button"%>
 <%end%>
+

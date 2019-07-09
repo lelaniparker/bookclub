@@ -1,13 +1,13 @@
 <h1><%= @book.title %></h1>
 
-<p class="book-item">
-  <%= image_tag @book.cover, width: 120 %>
-</p>
-
 <p><%= @book.author.name %></p>
 <p><%= @book.genre %></p>
 
-
+<% if @book.cover.attached?%>
+  <p class="book-item">
+    <%= image_tag @book.cover, width: 120 %>
+    </p>
+<%end%>
 
 <% if user_signed_in? %>
    <%if  @can_add %>
@@ -36,6 +36,15 @@
     <%end%>
   <%end%>
 </div>
+
+<% if @book.price %>
+<p class="book-item">
+<%= number_to_currency @book.price %>
+<%= link_to 'Buy now', new_order_path(book_id: @book.id) %>
+</p>
+<%end%>
+
+
 
 <div class="list-item">
   <h1><%= pluralize @book.users.length, "user/s" %> have this book listed</h1>

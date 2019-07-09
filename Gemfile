@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'cloudinary', require: false
 gem 'activestorage-cloudinary-service'
 
